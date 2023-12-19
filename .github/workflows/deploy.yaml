@@ -1,0 +1,35 @@
+name: Deploy-GAS
+run-name: ${{ github.actor }} deploy GAS
+on:
+  workflow_call:
+    inputs:
+      SCRIPT_ID:
+        required: true
+        type: string 
+env:
+    CLASPRC_JSON_SECRET: ${{ secrets.CLASPRC_JSON }}
+
+jobs:
+  deploy-GAS:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install clasp
+        id: install-clasp
+        run: sudo npm install @google/clasp@2.4.1 -g
+
+      - name: Check out repo
+        id: check-out-repo
+        uses: actions/checkout@v4
+
+      - run: ls -al
+
+      - name: Write CLASPRC_JSON secret to  file
+        id: write-clasprc
+        run: |
+            echo "$CLASPRC_JSON_SECRET" >> ~/.clasprc.json
+            cat ~/.clasprc.json
+            echo ${{ inputs.SCRPT_ID }}
+          
+      - name: Check clasp login status
+        id: clasp_login
+        run: clasp login --status
