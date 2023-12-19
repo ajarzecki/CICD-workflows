@@ -9,7 +9,6 @@ on:
     secrets:
       CLASPRC_JSON:
         required: true
-        type: string 
 
 jobs:
   deploy-GAS:
