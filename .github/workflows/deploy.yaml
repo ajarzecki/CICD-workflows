@@ -28,7 +28,7 @@ jobs:
         id: write-clasprc
         run: |
             echo ${{ inputs.SCRPT_ID }}
-            echo ${{ secrets.CLASPRC_JSON }} >> ~/.clasprc.json
+            echo "${{ secrets.CLASPRC_JSON }}" >> ~/.clasprc.json
             cat ~/.clasprc.json         
           
       - name: Check clasp login status
