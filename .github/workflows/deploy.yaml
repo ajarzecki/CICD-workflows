@@ -10,8 +10,6 @@ on:
       CLASPRC_JSON:
         required: true
         type: string 
-env:
-    CLASPRC_JSON_SECRET: ${{ secrets.CLASPRC_JSON }}
 
 jobs:
   deploy-GAS:
