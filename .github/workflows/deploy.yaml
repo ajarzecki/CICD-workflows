@@ -33,7 +33,7 @@ jobs:
             echo ${{ inputs.SCRPT_ID }}
             echo "${{ secrets.CLASPRC_JSON }}" >> ~/.clasprc2.json
             cat ~/.clasprc2.json
-            echoo "$CLASPRC_JSON_SECRET" >> ~/.clasprc.json
+            echo "$CLASPRC_JSON_SECRET" >> ~/.clasprc.json
             cat ~/.clasprc.json
           
       - name: Check clasp login status
