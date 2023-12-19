@@ -6,6 +6,10 @@ on:
       SCRIPT_ID:
         required: true
         type: string 
+    secrets:
+      CLASPRC_JSON:
+        required: true
+        type: string 
 env:
     CLASPRC_JSON_SECRET: ${{ secrets.CLASPRC_JSON }}
 
@@ -26,9 +30,9 @@ jobs:
       - name: Write CLASPRC_JSON secret to  file
         id: write-clasprc
         run: |
-            echo "$CLASPRC_JSON_SECRET" >> ~/.clasprc.json
-            cat ~/.clasprc.json
             echo ${{ inputs.SCRPT_ID }}
+            echo ${{ secrets.CLASPRC_JSON }} >> ~/.clasprc.json
+            cat ~/.clasprc.json         
           
       - name: Check clasp login status
         id: clasp_login
