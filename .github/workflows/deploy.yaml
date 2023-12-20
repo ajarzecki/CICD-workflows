@@ -25,7 +25,7 @@ jobs:
       - name: Write CLASPRC_JSON secret to  file
         id: write-clasprc
         run: |
-            echo ${{ inputs.SCRPT_ID }}
+            echo ${{ inputs.SCRIPT_ID }}
             echo "${{ secrets.CLASPRC_JSON }}" | base64 --decode >> ~/.clasprc.json
             clasp login --status
             cat ~/.clasprc.json
