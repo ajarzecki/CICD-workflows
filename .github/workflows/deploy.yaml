@@ -6,9 +6,6 @@ on:
       SCRIPT_ID:
         required: true
         type: string 
-      CLASPRC_JSON_SECRET:
-        required: true
-        type: string 
     secrets:
       CLASPRC_JSON:
         required: true
@@ -25,8 +22,6 @@ jobs:
         id: check-out-repo
         uses: actions/checkout@v4
 
-      - run: ls -al
-
       - name: Write CLASPRC_JSON secret to  file
         id: write-clasprc
         run: |
@@ -34,10 +29,9 @@ jobs:
             echo "${{ secrets.CLASPRC_JSON }}" | base64 --decode >> ~/.clasprc.json
             clasp login --status
             cat ~/.clasprc.json
-            echo "$CLASPRC_JSON_SECRET" | base64 --decode  >> ~/.clasprc.json
-            cat ~/.clasprc.json
-            clasp login --status
-          
+
+      - run: ls -al
+
       - name: Check clasp login status
         id: clasp_login
         run: clasp login --status
