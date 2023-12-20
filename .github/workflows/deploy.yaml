@@ -35,7 +35,7 @@ jobs:
 
       - name: prepare-clasp-json
         run: |
-          PWD = `pwd`
+          export PWD=`pwd`
           echo '{"scriptId":"'${{ inputs.SCRIPT_ID }}'","rootDir":"'$PWD'"}' >> .clasp.json
           cat .clasp.json
           pwd
