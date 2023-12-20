@@ -44,7 +44,7 @@ jobs:
           ls -al ~/
 
       - name: push
-        run: clasp push
+        run: clasp push -f
       
       - name: deploy
         run: clasp deploy
