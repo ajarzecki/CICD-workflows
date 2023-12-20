@@ -37,7 +37,7 @@ jobs:
         run: |
           echo '{"scriptId":"' >> ~/.clasp.json
           echo  ${{ inputs.SCRIPT_ID }} > ~/.clasp.json
-          echo '","rootDir":"/root/dev"}' > ~/.clasp.json
+          echo '","rootDir":"~/"}' > ~/.clasp.json
           cat ~/.clasprc.json
 
       - name: deploy
