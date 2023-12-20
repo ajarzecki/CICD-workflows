@@ -35,9 +35,8 @@ jobs:
 
       - name: prepare-clasp-json
         run: |
-          echo '{"scriptId":"' >> .clasp.json
-          echo  ${{ inputs.SCRIPT_ID }} >> .clasp.json
-          echo '","rootDir":"~/"}' >> .clasp.json
+          PWD = `pwd`
+          echo '{"scriptId":"'${{ inputs.SCRIPT_ID }}'","rootDir":"'$PWD'"}' >> .clasp.json
           cat .clasp.json
           pwd
           ls -al
