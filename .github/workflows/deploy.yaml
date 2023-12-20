@@ -38,7 +38,8 @@ jobs:
           echo '{"scriptId":"' >> ~/.clasp.json
           echo  ${{ inputs.SCRIPT_ID }} > ~/.clasp.json
           echo '","rootDir":"~/"}' > ~/.clasp.json
-          cat ~/.clasprc.json
+          cat ~/.clasp.json
+          ls -al
 
       - name: deploy
         run: clasp deploy
