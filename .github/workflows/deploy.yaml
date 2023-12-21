@@ -27,7 +27,7 @@ jobs:
         run: |
             echo "${{ secrets.CLASPRC_JSON }}" | base64 --decode >> ~/.clasprc.json
             #clasp login --status
-            cat ~/.clasprc.json
+            #cat ~/.clasprc.json
 
       - name: Check clasp login status
         id: clasp_login
@@ -38,10 +38,11 @@ jobs:
           export PWD=`pwd`
           echo '{"scriptId":"'${{ inputs.SCRIPT_ID }}'","rootDir":"'$PWD'"}' >> .clasp.json
           cat .clasp.json
-          pwd
+
+      - name: prepare-appscript-json
+        run: |
+          mv appsscript.json.prod appsscript.json
           ls -al
-          ls -al ../
-          ls -al ~/
 
       - name: push
         run: clasp push -f
