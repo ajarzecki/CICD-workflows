@@ -30,7 +30,7 @@ jobs:
         run: |
             echo "${{ secrets.CLASPRC_JSON }}" | base64 --decode >> ~/.clasprc.json
             #clasp login --status
-            #cat ~/.clasprc.json
+            cat ~/.clasprc.json
 
       - name: Check clasp login status
         id: clasp_login
