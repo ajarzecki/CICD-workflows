@@ -6,6 +6,9 @@ on:
       SCRIPT_ID:
         required: true
         type: string 
+      TEST_METHOD:
+        required: true
+        type: string 
     secrets:
       CLASPRC_JSON:
         required: true
@@ -46,6 +49,11 @@ jobs:
 
       - name: push
         run: clasp push -f
+
+      - name: run-test
+        run: |
+          echo ${{ inputs.TEST_METHOD }
+          clasp run ${{ inputs.TEST_METHOD }
       
       - name: deploy
         run: clasp deploy
