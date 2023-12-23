@@ -52,8 +52,8 @@ jobs:
 
       - name: run-test
         run: |
-          echo ${{ inputs.TEST_METHOD }
-          clasp run ${{ inputs.TEST_METHOD }
+          echo ${{ inputs.TEST_METHOD }}
+          clasp run ${{ inputs.TEST_METHOD }}
       
       - name: deploy
         run: clasp deploy
