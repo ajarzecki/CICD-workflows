@@ -29,6 +29,7 @@ jobs:
         id: write-clasprc
         run: |
             echo "${{ secrets.CLASPRC_JSON }}" | base64 --decode >> ~/.clasprc.json
+            cp  ~/.clasprc.json .
             #clasp login --status
             cat ~/.clasprc.json
 
