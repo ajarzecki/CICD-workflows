@@ -40,7 +40,7 @@ jobs:
       - name: prepare-clasp-json
         run: |
           export PWD=`pwd`
-          echo '{"scriptId":"'${{ inputs.SCRIPT_ID }}'","rootDir":"'$PWD'","projectId":"woocomerce-bridge-preprod"}' >> .clasp.json
+          echo '{"scriptId":"'${{ inputs.SCRIPT_ID }}'","rootDir":"'$PWD'","projectId":"test-woocomerce-409416"}' >> .clasp.json
           cat .clasp.json
 
       - name: prepare-appscript-json
