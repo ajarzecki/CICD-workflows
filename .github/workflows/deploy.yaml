@@ -25,11 +25,10 @@ jobs:
         id: check-out-repo
         uses: actions/checkout@v4
 
-      - name: Write CLASPRC_JSON secret to  file
-        id: write-clasprc
+      - name: Write CLASPRC_LOGIN secret to  file
+        id: write-clasprc-login
         run: |
-            echo "${{ secrets.CLASPRC_JSON }}" | base64 --decode >> ~/.clasprc.json
-            cp  ~/.clasprc.json .
+            echo "${{ secrets.CLASPRC_LOGIN }}" | base64 --decode >> ~/.clasprc.json
             #clasp login --status
             cat ~/.clasprc.json
 
@@ -37,10 +36,17 @@ jobs:
         id: clasp_login
         run: clasp login --status
 
+      - name: Write CLASPRC_RUN secret to  file
+        id: write-clasprc-run
+        run: |
+            echo "${{ secrets.CLASPRC_RUN }}" | base64 --decode >> .clasprc.json
+            #clasp login --status
+            cat .clasprc.json
+
       - name: prepare-clasp-json
         run: |
           export PWD=`pwd`
-          echo '{"scriptId":"'${{ inputs.SCRIPT_ID }}'","rootDir":"'$PWD'","projectId":"test-woocomerce-409416"}' >> .clasp.json
+          echo '{"scriptId":"'${{ inputs.SCRIPT_ID }}'","rootDir":"'$PWD'","projectId":"${{ inputs.PROJECT_ID }}"}' >> .clasp.json
           cat .clasp.json
 
       - name: prepare-appscript-json
