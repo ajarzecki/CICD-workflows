@@ -9,8 +9,13 @@ on:
       TEST_METHOD:
         required: true
         type: string 
+      PROJECT_ID:
+        required: true
+        type: string 
     secrets:
-      CLASPRC_JSON:
+      CLASPRC_LOGIN:
+        required: true
+      CLASPRC_RUN:
         required: true
 
 jobs:
