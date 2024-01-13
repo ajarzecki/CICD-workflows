@@ -6,8 +6,16 @@ on:
       SCRIPT_ID:
         required: true
         type: string 
+      TEST_METHOD:
+        required: true
+        type: string 
+      PROJECT_ID:
+        required: true
+        type: string 
     secrets:
-      CLASPRC_JSON:
+      CLASPRC_LOGIN:
+        required: true
+      CLASPRC_RUN:
         required: true
 
 jobs:
@@ -22,21 +30,28 @@ jobs:
         id: check-out-repo
         uses: actions/checkout@v4
 
-      - name: Write CLASPRC_JSON secret to  file
-        id: write-clasprc
+      - name: Write CLASPRC_LOGIN secret to  file
+        id: write-clasprc-login
         run: |
-            echo "${{ secrets.CLASPRC_JSON }}" | base64 --decode >> ~/.clasprc.json
+            echo "${{ secrets.CLASPRC_LOGIN }}" | base64 --decode >> ~/.clasprc.json
             #clasp login --status
-            #cat ~/.clasprc.json
+            cat ~/.clasprc.json
 
       - name: Check clasp login status
         id: clasp_login
         run: clasp login --status
 
+      - name: Write CLASPRC_RUN secret to  file
+        id: write-clasprc-run
+        run: |
+            echo "${{ secrets.CLASPRC_RUN }}" | base64 --decode >> .clasprc.json
+            #clasp login --status
+            cat .clasprc.json
+
       - name: prepare-clasp-json
         run: |
           export PWD=`pwd`
-          echo '{"scriptId":"'${{ inputs.SCRIPT_ID }}'","rootDir":"'$PWD'"}' >> .clasp.json
+          echo '{"scriptId":"'${{ inputs.SCRIPT_ID }}'","rootDir":"'$PWD'","projectId":"${{ inputs.PROJECT_ID }}"}' >> .clasp.json
           cat .clasp.json
 
       - name: prepare-appscript-json
@@ -46,6 +61,11 @@ jobs:
 
       - name: push
         run: clasp push -f
+
+      - name: run-test
+        run: |
+          echo ${{ inputs.TEST_METHOD }}
+          clasp run ${{ inputs.TEST_METHOD }}
       
       - name: deploy
         run: clasp deploy
