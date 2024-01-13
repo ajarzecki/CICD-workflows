@@ -63,7 +63,7 @@ jobs:
         run: clasp push -f
 
       - name: run-test
-        if: ${{ inputs.TEST_METHOD != '' }}
+        if: ${{ inputs.TEST_METHOD != 'NO_RUN' }}
         run: |
           echo ${{ inputs.TEST_METHOD }}
           clasp run ${{ inputs.TEST_METHOD }}
