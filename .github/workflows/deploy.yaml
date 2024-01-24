@@ -42,8 +42,8 @@ jobs:
         run: clasp login --status
 
       - name: Write CLASPRC_RUN secret to  file
-        id: write-clasprc-run
         if: ${{ secrets.CLASPRC_RUN != 'NO_RUN' }}
+        id: write-clasprc-run
         run: |
             echo "${{ secrets.CLASPRC_RUN }}" | base64 --decode >> .clasprc.json
             #clasp login --status
