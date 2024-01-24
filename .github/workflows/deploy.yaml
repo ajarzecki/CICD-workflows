@@ -35,7 +35,7 @@ jobs:
         run: |
             echo "${{ secrets.CLASPRC_LOGIN }}" | base64 --decode >> ~/.clasprc.json
             #clasp login --status
-            cat ~/.clasprc.json
+            #cat ~/.clasprc.json
 
       - name: Check clasp login status
         id: clasp_login
@@ -43,10 +43,11 @@ jobs:
 
       - name: Write CLASPRC_RUN secret to  file
         id: write-clasprc-run
+        if: ${{ secrets.CLASPRC_RUN != 'NO_RUN' }}
         run: |
             echo "${{ secrets.CLASPRC_RUN }}" | base64 --decode >> .clasprc.json
             #clasp login --status
-            cat .clasprc.json
+            #cat .clasprc.json
 
       - name: prepare-clasp-json
         run: |
