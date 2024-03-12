@@ -69,4 +69,4 @@ executionApi": {
  
  add project ID to  .clasp.json
  
- {"scriptId":"1KZERZMmzRoQU48I1cn1f7LofBKqDhd-tlt69GzXtmcXHuQ8gauwX3kMe","rootDir":"/root/dev","projectId":"woocomerce-bridge-preprod"}
+ {"scriptId":"ID_SCRYPTU","rootDir":"/root/dev","projectId":"ID_PROJEKTU"}
